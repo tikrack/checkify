@@ -1,8 +1,11 @@
+import Container from "./Container.jsx";
+
 const Header = () => {
   return <>
     <header className={"h-18 border-b border-gray-200"}>
-      <img src="" alt="" />
-
+      <Container>
+        <img src="" alt="" />
+      </Container>
     </header>
   </>
 }
