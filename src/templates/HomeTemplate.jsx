@@ -12,7 +12,7 @@ const HomeTemplate = () => {
           <Card
             href={"/check-issue"}
             icon={
-              <Paypal size="40" className={"text-primary"} variant="Bold" />
+              <Paypal size="42" className={"text-warning"} variant="Bold" />
             }
             title={"صدور چک"}
             description={"انجام کلیه امور صدور چک توسط سامانه"}
@@ -29,7 +29,7 @@ const Card = ({ icon, description, title, href }) => {
       <Link
         to={href}
         className={
-          "bg-white flex gap-2 shadow-card cursor-pointer p-6 rounded-xl active:scale-98 transition-all duration-100"
+          "bg-white flex items-center gap-3 shadow-card cursor-pointer p-6 rounded-xl active:scale-98 transition-all duration-100"
         }
       >
         {icon}
