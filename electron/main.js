@@ -35,6 +35,9 @@ function createWindow() {
     } else {
         win.loadFile(path.join(RENDERER_DIST, 'index.html'));
     }
+
+    win.setMenu(null);
+    win.setTitle('چکیفای | نرم افزار شبیه ساز خدمات چک');
 }
 
 app.on('window-all-closed', () => {
