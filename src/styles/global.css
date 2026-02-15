@@ -23,7 +23,7 @@
 }
 
 @theme {
-    --font-rokh: "Rokh";
-    --font-vazir: "Vazir";
+    --font-rokh: "Rokh", sans-serif;
+    --font-vazir: "Vazir", sans-serif;
     --color-primary: #d1d109;
 }
