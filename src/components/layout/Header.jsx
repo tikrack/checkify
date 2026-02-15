@@ -1,6 +1,9 @@
 const Header = () => {
   return <>
-    Header
+    <header className={"h-18 border-b border-gray-200"}>
+      <img src="" alt="" />
+
+    </header>
   </>
 }
 

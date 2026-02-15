@@ -1,2 +1,29 @@
 @import "tailwindcss";
 
+@font-face {
+    font-family: "Rokh";
+    src: url("/fonts/RokhFaNum-Bold.woff2") format("woff2");
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: "Vazir";
+    src: url("/fonts/Vazirmatn-Regular.woff2") format("woff2");
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "Vazir";
+    src: url("/fonts/Vazirmatn-Bold.woff2") format("woff2");
+    font-weight: normal;
+}
+
+* {
+    font-family: "Vazir", "Rokh", sans-serif;
+}
+
+@theme {
+    --font-rokh: "Rokh";
+    --font-vazir: "Vazir";
+    --color-primary: #d1d109;
+}
