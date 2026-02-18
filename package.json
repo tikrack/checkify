@@ -10,14 +10,20 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
     "@tailwindcss/vite": "^4.1.18",
+    "clsx": "^2.1.1",
     "electron": "^40.4.1",
     "electron-builder": "^26.7.0",
+    "iconsax-reactjs": "^0.0.8",
     "prettier": "^3.8.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "react-hook-form": "^7.71.1",
     "react-router": "^7.13.0",
-    "tailwindcss": "^4.1.18"
+    "react-toastify": "^11.0.5",
+    "tailwindcss": "^4.1.18",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
