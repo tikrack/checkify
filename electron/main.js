@@ -1,5 +1,10 @@
-import {BrowserWindow, app} from "electron"
+import {app, BrowserWindow} from "electron"
 import * as path from "node:path";
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const createWindow = () => {
     const win = new BrowserWindow({
@@ -8,10 +13,10 @@ const createWindow = () => {
         }
     })
 
-    win.loadURL("http://localhost:3000")
+    win.loadURL("http://localhost:5173")
 }
 
-app.whenReady().then(() => {
+app.on('ready', () => {
     createWindow()
 
     app.on('activate', () => {

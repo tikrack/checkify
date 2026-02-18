@@ -3,8 +3,9 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "main": "electron/main.js",
   "scripts": {
-    "dev": "vite",
+    "dev": "npx concurrently 'electron .' 'vite' --kill-others",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
@@ -13,6 +14,7 @@
     "@hookform/resolvers": "^5.2.2",
     "@tailwindcss/vite": "^4.1.18",
     "clsx": "^2.1.1",
+    "concurrently": "^9.2.1",
     "electron": "^40.4.1",
     "electron-builder": "^26.7.0",
     "iconsax-reactjs": "^0.0.8",
