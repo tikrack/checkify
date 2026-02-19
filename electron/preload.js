@@ -1,5 +1,9 @@
 const { contextBridge, ipcRenderer } = require("electron");
 
 contextBridge.exposeInMainWorld("db", {
-    getAllChecks: () => ipcRenderer.invoke("get-all-checks")
+    getAllUsers: () => ipcRenderer.invoke("get-all-users"),
+    getUser: () => ipcRenderer.invoke("get-user"),
+    createUser: () => ipcRenderer.invoke("create-user"),
+    updateUser: () => ipcRenderer.invoke("update-user"),
+    removeUser: () => ipcRenderer.invoke("remove-user"),
 });
