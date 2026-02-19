@@ -3,7 +3,10 @@
  * @returns { import("knex").Knex.SchemaBuilder }
  */
 exports.up = function(knex) {
-  
+  return knex.schema.createTable("checks", table => {
+    table.increments("id").primary();
+    table.string("name").notNullable();
+  });
 };
 
 /**
@@ -11,5 +14,5 @@ exports.up = function(knex) {
  * @returns { import("knex").Knex.SchemaBuilder }
  */
 exports.down = function(knex) {
-  
+  return knex.schema.dropTable("checks");
 };

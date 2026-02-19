@@ -19,5 +19,5 @@ exports.up = function(knex) {
  * @returns { import("knex").Knex.SchemaBuilder }
  */
 exports.down = function(knex) {
-    return knex.schema.dropTable("checks");
+    return knex.schema.dropTable("users");
 };
