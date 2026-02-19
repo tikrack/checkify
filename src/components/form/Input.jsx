@@ -1,6 +1,7 @@
 import { useFormContext } from "react-hook-form";
 import clsx from "clsx";
 import { useState } from "react";
+import DatePicker from "./DatePicker";
 
 const Input = ({
   name = "",
@@ -15,6 +16,7 @@ const Input = ({
   value: propValue,
   useForm = true,
   size = "md",
+  multi = false,
   ...props
 }) => {
   let register = () => ({});
@@ -28,7 +30,9 @@ const Input = ({
         errors = ctx.formState?.errors || {};
       }
     }
-  } catch { /* empty */ }
+  } catch {
+    /* empty */
+  }
 
   const error = errors?.[name];
   const [localValue, setLocalValue] = useState(propValue || "");
@@ -66,6 +70,21 @@ const Input = ({
     defaultValue: useForm ? undefined : propValue,
   };
 
+  const render = () => {
+    switch (type) {
+      case "date":
+        return <DatePicker name={name} className={baseClass} />
+      default:
+        return multi ? (
+          <textarea {...commonProps}>
+            {!useForm && type !== "file" ? localValue : undefined}
+          </textarea>
+        ) : (
+          <input type={type} {...commonProps} />
+        );
+    }
+  };
+
   return (
     <div className={clsx("flex flex-col", className?.wrapper)}>
       {label && (
@@ -74,7 +93,7 @@ const Input = ({
           {required && <span className="text-red-500 font-bold"> *</span>}
         </label>
       )}
-      <input type={type} {...commonProps} />
+      {render()}
       {error && (
         <span className="mt-1 text-sm text-red-500">{error.message}</span>
       )}
