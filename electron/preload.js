@@ -1,8 +1,5 @@
-import {contextBridge} from "electron";
+const { contextBridge } = require("electron");
 
-
-contextBridge.exposeInMainWorld('test', {
-    doAThing: () => {
-        console.log("Salammmmm")
-    }
-})
+contextBridge.exposeInMainWorld("api", {
+    ping: () => "pong",
+});
