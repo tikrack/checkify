@@ -6,7 +6,7 @@ import {useEffect} from "react";
 
 const Router = () => {
     useEffect(() => {
-        window.db.getChecks().then(r => {
+        window.db.getAllChecks().then(r => {
             console.log(r)
         })
     }, [])

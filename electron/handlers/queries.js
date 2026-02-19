@@ -2,7 +2,7 @@ const {ipcMain} = require("electron");
 const checksAction = require("../actions/checks.js")
 
 const queryHandler = () => {
-    ipcMain.handle("get-checks", async () => checksAction.getAll())
+    ipcMain.handle("get-all-checks", async () => checksAction.getAll())
 }
 
 module.exports = queryHandler;

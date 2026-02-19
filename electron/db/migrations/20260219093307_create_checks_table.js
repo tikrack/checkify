@@ -5,11 +5,15 @@
 exports.up = function(knex) {
     return knex.schema.createTable("checks", table => {
         table.increments("id").primary();
-        table.string("series").notNullable();
-        table.string("serial").notNullable();
-        table.date("date").notNullable();
-        table.float("amount").notNullable();
-        table.string("status").notNullable();
+        table.string("series").notNullable(); // سری
+        table.string("serial").notNullable(); // سریال
+        table.float("amount").notNullable(); // مبلغ
+        table.date("date").notNullable(); //تاریخ
+        table.string("description").notNullable(); // توضیحات
+        table.string("status").notNullable(); // وضعیت
+        table.integer("receiver_id").unsigned(); // گیرنده
+
+        table.foreign("receiver_id").references("id").inTable("users").onDelete("CASCADE");
     });
 };
 
