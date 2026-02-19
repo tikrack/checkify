@@ -1,7 +1,6 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
 const knex = require("./db/db.js");
-
 const queryHandler = require("./handlers/queries.js");
 
 const isDev = !app.isPackaged;
@@ -23,9 +22,13 @@ function createWindow() {
         win.loadFile(path.join(__dirname, "../dist/index.html"));
     }
 
-    (async () => {
-        await knex.migrate.latest();
-    })();
+    knex.migrate.latest()
+        .then(() => {
+            console.log("----------- Migration Finished -----------");
+        })
+        .catch(err => {
+            console.error("Migration failed:", err);
+        });
 
     win.webContents.openDevTools();
 }

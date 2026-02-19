@@ -1,11 +1,19 @@
 const knex = require("../db/db.js")
 
 const getAll = () => {
-    return knex("checks").select("*");
+    return knex("users").select("*");
 }
 
 const get = () => {}
-const create = () => {}
+
+const create = async (data) => {
+    try {
+        return await knex("users").insert(data);
+    } catch (err) {
+        throw err;
+    }
+};
+
 const update = () => {}
 const remove = () => {}
 
