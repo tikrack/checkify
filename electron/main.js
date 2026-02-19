@@ -1,5 +1,6 @@
 const { app, BrowserWindow } = require("electron");
 const path = require("path");
+const knex = require("./db/db.js");
 
 const isDev = !app.isPackaged;
 
@@ -17,6 +18,10 @@ function createWindow() {
     } else {
         win.loadFile(path.join(__dirname, "../dist/index.html"));
     }
+
+    (async () => {
+        await knex.migrate.latest();
+    })();
 
     win.webContents.openDevTools();
 }
