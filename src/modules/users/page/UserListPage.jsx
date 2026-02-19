@@ -14,8 +14,11 @@ const UserListPage = () => {
     })();
   }, []);
 
-  const handleDelete = (id) => {
-    console.log(id);
+  const handleDelete = async (id) => {
+    if (confirm("از کار خود مطمئن هستید؟")) {
+      await window.db.removeUser(id);
+
+    }
   };
 
   const handleEdit = (id) => {

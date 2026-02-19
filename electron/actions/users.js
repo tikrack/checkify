@@ -15,7 +15,14 @@ const create = async (data) => {
 };
 
 const update = () => {}
-const remove = () => {}
+
+const remove = async (data) => {
+  try {
+    return await knex("users").where({id: data.id}).del();
+  } catch (err) {
+    throw err;
+  }
+}
 
 module.exports = {
     getAll,
