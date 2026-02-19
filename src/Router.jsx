@@ -2,6 +2,7 @@ import {BrowserRouter, Route, Routes} from "react-router";
 import MainLayout from "./layouts/MainLayout.jsx";
 import HomeTemplate from "./templates/HomeTemplate.jsx";
 import UserListPage from "./modules/users/page/UserListPage";
+import UserCreatePage from "./modules/users/page/UserCreatePage";
 
 const Router = () => {
     return (<>
@@ -11,6 +12,7 @@ const Router = () => {
                         <Route path="/" element={<HomeTemplate/>}/>
                         <Route path={"users"}>
                             <Route index element={<UserListPage/>}/>
+                            <Route path={"create"} element={<UserCreatePage/>}/>
                         </Route>
                     </Route>
                 </Routes>
