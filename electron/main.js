@@ -1,8 +1,12 @@
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
 const knex = require("./db/db.js");
 
+const queryHandler = require("./handlers/queries.js");
+
 const isDev = !app.isPackaged;
+
+queryHandler();
 
 function createWindow() {
     const win = new BrowserWindow({
