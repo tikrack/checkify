@@ -5,19 +5,12 @@ import CheckIssueTemplate from "./templates/CheckIssueTemplate.jsx";
 import {useEffect} from "react";
 
 const Router = () => {
-    useEffect(() => {
-        window.db.getAllChecks().then(r => {
-            console.log(r)
-        })
-    }, [])
-
   return (
     <>
       <BrowserRouter>
         <Routes>
           <Route element={<MainLayout />}>
             <Route path="/" element={<HomeTemplate />} />
-            <Route path="/check-issue" element={<CheckIssueTemplate />} />
           </Route>
         </Routes>
       </BrowserRouter>
