@@ -1,0 +1,2 @@
+>>> Create Migration
+-npm run knex migrate:make create_checks_table

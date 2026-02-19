@@ -5,7 +5,7 @@ module.exports = {
     development: {
         client: "sqlite3",
         connection: {
-            filename: path.join(app.getPath("userData"), "checks.db")
+            filename: path.join(__dirname, "checks.db")
         },
         useNullAsDefault: true,
         migrations: {
