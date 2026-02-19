@@ -11,6 +11,11 @@ const CheckIssuePage = () => {
   const [level, setLevel] = useState(1);
   const navigate = useNavigate();
 
+  const handleContinue = (e, o = "+") => {
+    if (!confirm("از صحت اطلاعات خود مطمئن هستید؟")) return;
+    setLevel(o === "+" ? level + 1 : level - 1);
+  };
+
   const handleSubmit = async (e) => {
     await window.db.createUser(e);
     toast.success("کاربر با موفقیت ایجاد شد.");
@@ -20,8 +25,7 @@ const CheckIssuePage = () => {
   return (
     <>
       <Container className={"mt-10 flex justify-center"}>
-        {(level < 2) &&
-        (
+        {level < 3 && (
           <Form
             schema={schema}
             className="bg-white border border-gray-200 p-6 max-w-190 w-full rounded-2xl"
@@ -47,7 +51,11 @@ const CheckIssuePage = () => {
                   className={"p-3 min-h-20"}
                 />
               </div>
-              <Button type={"submit"} className={"mt-6"}>
+              <Button
+                type={"submit"}
+                className={"mt-6"}
+                onClick={handleContinue}
+              >
                 ادامه
               </Button>
             </Activity>
