@@ -6,7 +6,7 @@ const queryHandler = () => {
     ipcMain.handle("get-user", async (_, d) => usersAction.get())
     ipcMain.handle("create-user", async (_, d) => usersAction.create(d))
     ipcMain.handle("update-user", async (_, d) => usersAction.update())
-    ipcMain.handle("remove-user", async (_, d) => usersAction.remove())
+    ipcMain.handle("remove-user", async (_, d) => usersAction.remove(d))
 }
 
 module.exports = queryHandler;

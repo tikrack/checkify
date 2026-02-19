@@ -16,9 +16,9 @@ const create = async (data) => {
 
 const update = () => {}
 
-const remove = async (data) => {
+const remove = async (id) => {
   try {
-    return await knex("users").where({id: data.id}).del();
+    return await knex("users").where({id}).del();
   } catch (err) {
     throw err;
   }
