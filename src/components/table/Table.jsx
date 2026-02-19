@@ -62,7 +62,7 @@ const Table = ({ columns, data, isLoading }) => {
                     table.getRowModel().rows.map((row) => (
                         <tr
                             key={row.id}
-                            className="border-t border-gray-300 hover:bg-gray-50"
+                            className="border-t border-gray-300 hover:bg-gray-50 text-gray-700"
                         >
                             {row.getVisibleCells().map((cell) => (
                                 <td key={cell.id} className="px-4 h-12">
