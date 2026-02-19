@@ -22,6 +22,10 @@ const UserListPage = () => {
     console.log(id);
   };
 
+  const handleCreate = () => {
+
+  }
+
   const COLUMNS = [
     {
       header: "نام",
@@ -77,7 +81,7 @@ const UserListPage = () => {
         <div className="p-6 bg-white rounded-2xl mt-10 border  border-gray-200">
           <div className="flex justify-between items-center mb-6">
             <h2 className={"!font-rokh text-2xl"}>کاربران</h2>
-            <Button>ایجاد کاربر جدید</Button>
+            <Button onCLick={handleCreate}>ایجاد کاربر جدید</Button>
           </div>
           <Table columns={COLUMNS} data={users} />
         </div>
