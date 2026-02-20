@@ -9,6 +9,7 @@ import { Activity, useState } from "react";
 
 const CheckIssuePage = () => {
   const [fullName, setFullName] = useState("");
+  const [formData, setFormData] = useState(null);
   const [level, setLevel] = useState(1);
   const navigate = useNavigate();
 
@@ -18,9 +19,8 @@ const CheckIssuePage = () => {
   };
 
   const handleSubmit = async (e) => {
-    await window.db.issueCheck(e);
-    toast.success("کاربر با موفقیت ایجاد شد.");
-    navigate("/");
+    setFormData(e);
+    setLevel(3)
   };
 
   const handleChangeNational = async (e) => {
@@ -33,6 +33,12 @@ const CheckIssuePage = () => {
       setFullName("");
     }
   };
+
+  const handleSendData = async () => {
+    await window.db.issueCheck(formData);
+    toast.success("چک با موفقیت صادر شد.");
+    navigate("/");
+  }
 
   return (
     <>
@@ -75,7 +81,7 @@ const CheckIssuePage = () => {
               <h2 className={"!font-rokh text-2xl text-center"}>گیرنده چک</h2>
               <div className="grid grid-cols-2 gap-4 mt-6">
                 <Input
-                  name={"national-id"}
+                  name={"national-code"}
                   label={"کد ملی"}
                   dir={"ltr"}
                   autofocus
@@ -100,7 +106,53 @@ const CheckIssuePage = () => {
             </Activity>
           </Form>
         )}
-        {level === 3 && <>Hello</>}
+        {level === 3 && <>
+          <div className="bg-white border border-gray-200 p-6 max-w-150 w-full rounded-2xl text-gray-700">
+            <h2 className={"!font-rokh text-black text-2xl text-center mb-8"}>تایید اطلاعات</h2>
+            <div>
+              <div className={"flex justify-between items-center"}>
+                <span>شناسه چک</span>
+                <span>{formData?.seyyad}</span>
+              </div>
+              <hr className={"h-px border-0 opacity-100 bg-gray-200 my-4"} />
+              <div className={"flex justify-between items-center"}>
+                <span>سری چک</span>
+                <span>{formData?.series}</span>
+              </div>
+              <hr className={"h-px border-0 opacity-100 bg-gray-200 my-4"} />
+              <div className={"flex justify-between items-center"}>
+                <span>سریال چک</span>
+                <span>{formData?.serial}</span>
+              </div>
+              <hr className={"h-px border-0 opacity-100 bg-gray-200 my-4"} />
+              <div className={"flex justify-between items-center"}>
+                <span>مبلغ (﷼)</span>
+                <span>{formData?.amount}</span>
+              </div>
+              <hr className={"h-px border-0 opacity-100 bg-gray-200 my-4"} />
+              <div className={"flex justify-between items-center"}>
+                <span>تاریخ</span>
+                <span>{formData?.date.toLocaleString("fa-IR")}</span>
+              </div>
+              <hr className={"h-px border-0 opacity-100 bg-gray-200 my-4"} />
+              <div className={"flex justify-between items-center"}>
+                <span>توضیحات</span>
+                <span>{formData?.description}</span>
+              </div>
+              <hr className={"h-px border-0 opacity-100 bg-gray-200 my-4"} />
+              <div className={"flex justify-between items-center"}>
+                <span>کد ملی گیرنده</span>
+                <span>{formData?.["national-code"]}</span>
+              </div>
+              <hr className={"h-px border-0 opacity-100 bg-gray-200 my-4"} />
+              <div className={"flex justify-between items-center"}>
+                <span>نام گیرنده</span>
+                <span>{fullName}</span>
+              </div>
+            </div>
+            <Button className={"mt-6"} onClick={handleSendData}>تایید اطلاعات</Button>
+          </div>
+        </>}
       </Container>
     </>
   );

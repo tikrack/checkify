@@ -34,7 +34,7 @@ const schema = z.object({
     .max(500, { message: "حداکثر ۵۰۰ کاراکتر مجاز است" })
     .trim(),
 
-  "national-id": z
+  "national-code": z
     .string()
     .trim()
     .regex(/^\d{10}$/, { message: "کد ملی باید معتبر باشد. (انگلیسی)" }),

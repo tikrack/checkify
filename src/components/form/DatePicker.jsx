@@ -5,7 +5,7 @@ import persian_fa from "react-date-object/locales/persian_fa";
 import TimePicker from "react-multi-date-picker/plugins/time_picker";
 import clsx from "clsx";
 
-const DatePicker = ({ name, showTime = false, className }) => {
+const DatePicker = ({ name, showTime = true, className }) => {
   const { control } = useFormContext();
 
   const {
