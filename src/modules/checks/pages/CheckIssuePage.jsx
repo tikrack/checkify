@@ -42,7 +42,7 @@ const CheckIssuePage = () => {
                 />
                 <Input name={"series"} label={"سری چک"} dir={"ltr"} />
                 <Input name={"serial"} dir={"ltr"} label={"شماره سریال"} />
-                <Input name={"amount"} dir={"ltr"} label={"مبلغ"} />
+                <Input name={"amount"} dir={"ltr"} label={"مبلغ (ریال)"} />
                 <Input name={"date"} type={"date"} label={"تاریخ"} />
                 <Input
                   name={"description"}
@@ -69,7 +69,7 @@ const CheckIssuePage = () => {
                   autofocus
                 />
                 <Input
-                  name={"national-id"}
+                  name={"name-family"}
                   label={"نام و نام خانوادگی"}
                   disabled
                 />
