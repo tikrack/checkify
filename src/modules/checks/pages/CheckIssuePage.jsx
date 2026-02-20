@@ -8,6 +8,7 @@ import { useNavigate } from "react-router";
 import { Activity, useState } from "react";
 
 const CheckIssuePage = () => {
+  const [fullName, setFullName] = useState("");
   const [level, setLevel] = useState(1);
   const navigate = useNavigate();
 
@@ -17,9 +18,20 @@ const CheckIssuePage = () => {
   };
 
   const handleSubmit = async (e) => {
-    await window.db.createUser(e);
+    await window.db.issueCheck(e);
     toast.success("کاربر با موفقیت ایجاد شد.");
-    navigate("/users");
+    navigate("/");
+  };
+
+  const handleChangeNational = async (e) => {
+    const result = await window.db.getUserByNationalId(e.target.value);
+
+    if (result) {
+      toast.success("کاربر یافت شد.");
+      setFullName(result.name + " " + result.family);
+    } else {
+      setFullName("");
+    }
   };
 
   return (
@@ -52,7 +64,7 @@ const CheckIssuePage = () => {
                 />
               </div>
               <Button
-                type={"submit"}
+                type={"button"}
                 className={"mt-6"}
                 onClick={handleContinue}
               >
@@ -67,14 +79,22 @@ const CheckIssuePage = () => {
                   label={"کد ملی"}
                   dir={"ltr"}
                   autofocus
+                  onChange={handleChangeNational}
                 />
                 <Input
-                  name={"name-family"}
+                  name={"fullName"}
+                  value={fullName}
                   label={"نام و نام خانوادگی"}
                   disabled
+                  useForm={false}
+                  updatable
                 />
               </div>
-              <Button type={"submit"} className={"mt-6"}>
+              <Button
+                type={"submit"}
+                className={"mt-6"}
+                disabled={fullName.trim() === ""}
+              >
                 ادامه
               </Button>
             </Activity>

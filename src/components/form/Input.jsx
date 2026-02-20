@@ -1,6 +1,6 @@
 import { useFormContext } from "react-hook-form";
 import clsx from "clsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DatePicker from "./DatePicker";
 
 const Input = ({
@@ -17,6 +17,7 @@ const Input = ({
   useForm = true,
   size = "md",
   multi = false,
+  updatable = false,
   ...props
 }) => {
   let register = () => ({});
@@ -36,6 +37,12 @@ const Input = ({
 
   const error = errors?.[name];
   const [localValue, setLocalValue] = useState(propValue || "");
+
+  useEffect(() => {
+    if (updatable) {
+      setLocalValue(propValue);
+    }
+  }, [propValue]);
 
   const sizes = {
     md: "px-2.5 h-12 rounded-xl border-2 border-gray-200 transition-all duration-100 text-sm",
@@ -62,7 +69,7 @@ const Input = ({
     dir,
     placeholder,
     autoFocus: autofocus,
-    onChange: handleChange,
+    onInput: handleChange,
     className: baseClass,
     ...props,
     ...(useForm ? register(name) : {}),
@@ -73,7 +80,7 @@ const Input = ({
   const render = () => {
     switch (type) {
       case "date":
-        return <DatePicker name={name} className={baseClass} />
+        return <DatePicker name={name} className={baseClass} />;
       default:
         return multi ? (
           <textarea {...commonProps}>
