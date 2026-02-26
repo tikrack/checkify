@@ -5,7 +5,12 @@ import schema from "../utils/schema";
 
 const LoginTemplate = () => {
   const handleSubmit = (e) => {
-    console.log(e);
+    const result = window.db.loginWithCredential({
+      username: e.username,
+      password: e.password,
+    })
+
+    console.log(result);
   };
 
   return (

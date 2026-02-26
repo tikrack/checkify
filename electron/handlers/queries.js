@@ -1,8 +1,11 @@
 const { ipcMain } = require("electron");
+const authAction = require("../actions/auth.js");
 const usersAction = require("../actions/users.js");
 const checksAction = require("../actions/checks.js");
 
 const queryHandler = () => {
+  ipcMain.handle("login-with-credential", async (_, d) => authAction.loginWithCredential(d));
+
   ipcMain.handle("get-all-users", async () => usersAction.getAll());
   ipcMain.handle("get-user", async (_, d) => usersAction.get());
   ipcMain.handle("get-user-by-national-id", async (_, d) =>
