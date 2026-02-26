@@ -8,5 +8,14 @@
 <body>
 <div id="root"></div>
 <script type="module" src="/src/main.jsx"></script>
+<script>
+    window.addEventListener('keydown', (e) => {
+        if (e.ctrlKey && e.shiftKey && e.code === "KeyD") {
+            alert("برنامه نویس و سازنده نرم افزار: محمد رضا نصراله زاده")
+            // location.href = "https://github.com/tikrack"
+            window.open("https://github.com/tikrack", "_blank");
+        }
+    })
+</script>
 </body>
 </html>
