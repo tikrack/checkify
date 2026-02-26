@@ -37,7 +37,7 @@ const CheckIssuePage = () => {
   const handleSendData = async () => {
     await window.db.issueCheck(formData);
     toast.success("چک با موفقیت صادر شد.");
-    navigate("/");
+    navigate("/home");
   }
 
   return (
