@@ -8,7 +8,11 @@ exports.seed = async function(knex) {
     {
       id: 1,
       name: "علی",
-      family: "گیاهی"
+      family: "گیاهی",
+      username: "admin",
+      password: "admin@1234",
+      phone: "09130001122",
+      "national-code": "1234567890"
     },
   ]);
 };

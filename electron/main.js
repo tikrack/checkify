@@ -8,36 +8,46 @@ const isDev = !app.isPackaged;
 queryHandler();
 
 function createWindow() {
-    const win = new BrowserWindow({
-        width: 1200,
-        height: 800,
-        webPreferences: {
-            preload: path.join(__dirname, "preload.js"),
-        },
+  const win = new BrowserWindow({
+    width: 1200,
+    height: 800,
+    webPreferences: {
+      preload: path.join(__dirname, "preload.js"),
+    },
+  });
+
+  if (isDev) {
+    win.loadURL("http://localhost:5173");
+  } else {
+    win.loadFile(path.join(__dirname, "../dist/index.html"));
+  }
+
+  knex.migrate
+    .latest()
+    .then(() => {
+      console.log("----------- Migration Finished -----------");
+    })
+    .catch((err) => {
+      console.error("Migration failed:", err);
     });
 
-    if (isDev) {
-        win.loadURL("http://localhost:5173");
-    } else {
-        win.loadFile(path.join(__dirname, "../dist/index.html"));
-    }
+  knex.seed
+    .run()
+    .then(() => {
+      console.log("----------- Seeding Finished -----------");
+    })
+    .catch((err) => {
+      console.error("Seed failed:", err);
+    });
 
-    knex.migrate.latest()
-        .then(() => {
-            console.log("----------- Migration Finished -----------");
-        })
-        .catch(err => {
-            console.error("Migration failed:", err);
-        });
-
-    win.setMenu(null);
-    win.webContents.openDevTools();
+  win.setMenu(null);
+  win.webContents.openDevTools();
 }
 
 app.whenReady().then(createWindow);
 
 app.on("window-all-closed", () => {
-    if (process.platform !== "darwin") {
-        app.quit();
-    }
+  if (process.platform !== "darwin") {
+    app.quit();
+  }
 });
