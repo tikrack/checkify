@@ -11,7 +11,7 @@ const Form = ({
   const methods = useForm({
     resolver: schema ? zodResolver(schema) : undefined,
     defaultValues,
-    mode: "onChange",
+    mode: "onSubmit",
   });
 
   return (
