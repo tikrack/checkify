@@ -1,7 +1,7 @@
 const { contextBridge, ipcRenderer } = require("electron");
 
 contextBridge.exposeInMainWorld("db", {
-  loginWithCredential: () => ipcRenderer.invoke("login-with-credential"),
+  loginWithCredential: (d) => ipcRenderer.invoke("login-with-credential", d),
 
   getAllUsers: () => ipcRenderer.invoke("get-all-users"),
   getUser: () => ipcRenderer.invoke("get-user"),

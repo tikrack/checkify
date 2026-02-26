@@ -2,15 +2,24 @@ import Form from "../components/form/Form";
 import Input from "../components/form/Input";
 import Button from "../components/uipart/Button";
 import schema from "../utils/schema";
+import { toast, ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router";
 
 const LoginTemplate = () => {
-  const handleSubmit = (e) => {
-    const result = window.db.loginWithCredential({
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    const result = await window.db.loginWithCredential({
       username: e.username,
       password: e.password,
-    })
+    });
 
-    console.log(result);
+    if (!result.success) {
+      toast.error("کاربری با این اطلاعات یافت نشد!");
+    } else if (result.success) {
+      toast.success("با موفقیت وارد شدید.");
+      navigate("/");
+    }
   };
 
   return (
@@ -48,6 +57,7 @@ const LoginTemplate = () => {
           </Form>
         </div>
       </main>
+      <ToastContainer />
     </>
   );
 };
