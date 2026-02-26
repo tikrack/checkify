@@ -1,12 +1,18 @@
 import Container from "./Container.jsx";
-import { useLocation } from "react-router";
-import { ArrowLeft2 } from "iconsax-reactjs";
+import { useLocation, useNavigate } from "react-router";
+import { ArrowLeft2, Logout } from "iconsax-reactjs";
 
 const Header = () => {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   const back = () => {
-    history.back()
+    history.back();
+  };
+
+  const handleLogOut = () => {
+    window.user = null
+    navigate("/")
   }
 
   return (
@@ -36,7 +42,14 @@ const Header = () => {
               </button>
             )}
             {pathname === "/home" && (
-              <span className={"!font-rokh"}>{window.user.name + " " + window.user.family}</span>
+              <>
+                <button className={"size-10 bg-gray-200/50 rounded-xl flex justify-center items-center ml-3 cursor-pointer active:scale-95"} onClick={handleLogOut} title={"خروج از حساب"}>
+                  <Logout />
+                </button>
+                <span className={"!font-rokh"}>
+                  {window.user.name + " " + window.user.family}
+                </span>
+              </>
             )}
           </div>
         </Container>
