@@ -25,7 +25,7 @@ const Header = () => {
             </div>
           </div>
           <div className="flex items-center">
-            {pathname !== "/" && (
+            {pathname !== "/home" && (
               <button
                 onClick={back}
                 className={
@@ -34,6 +34,9 @@ const Header = () => {
               >
                 <ArrowLeft2 className={"text-gray-600"} />
               </button>
+            )}
+            {pathname === "/home" && (
+              <span className={"!font-rokh"}>{window.user.name + " " + window.user.family}</span>
             )}
           </div>
         </Container>

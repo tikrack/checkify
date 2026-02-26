@@ -18,7 +18,8 @@ const LoginTemplate = () => {
       toast.error("کاربری با این اطلاعات یافت نشد!");
     } else if (result.success) {
       toast.success("با موفقیت وارد شدید.");
-      navigate("/");
+      window.user = result.data[0];
+      navigate("/home");
     }
   };
 
