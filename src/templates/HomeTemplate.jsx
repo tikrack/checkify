@@ -3,6 +3,10 @@ import { Paypal, User } from "iconsax-reactjs";
 import { Link } from "react-router";
 
 const HomeTemplate = () => {
+  const isOwner = () => {
+    return window.user.username === "admin"
+  }
+
   return (
     <>
       <Container className={"pt-10"}>
@@ -10,7 +14,9 @@ const HomeTemplate = () => {
         <div className="mt-3 grid grid-cols-4 gap-6">
           <Card
             href={"/checks"}
-            icon={<Paypal size="42" className={"text-warning"} variant="Bold" />}
+            icon={
+              <Paypal size="42" className={"text-warning"} variant="Bold" />
+            }
             title={"چک ها"}
             description={"مدیریت کلیه چک های سامانه چکیفای"}
           />
@@ -23,15 +29,21 @@ const HomeTemplate = () => {
             description={"انجام کلیه امور صدور چک توسط سامانه"}
           />
         </div>
-        <h2 className={"!font-rokh text-2xl mt-12"}>پیشرفته</h2>
-        <div className="mt-3 grid grid-cols-4 gap-6">
-          <Card
-            href={"/users"}
-            icon={<User size="42" className={"text-warning"} variant="Bold" />}
-            title={"کاربران"}
-            description={"مدیریت کلیه کاربران سامانه چکیفای"}
-          />
-        </div>
+        {isOwner() && (
+          <>
+            <h2 className={"!font-rokh text-2xl mt-12"}>پیشرفته</h2>
+            <div className="mt-3 grid grid-cols-4 gap-6">
+              <Card
+                href={"/users"}
+                icon={
+                  <User size="42" className={"text-warning"} variant="Bold" />
+                }
+                title={"کاربران"}
+                description={"مدیریت کلیه کاربران سامانه چکیفای"}
+              />
+            </div>
+          </>
+        )}
       </Container>
     </>
   );
