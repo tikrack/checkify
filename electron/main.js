@@ -30,6 +30,7 @@ function createWindow() {
             console.error("Migration failed:", err);
         });
 
+    win.setMenu(null);
     win.webContents.openDevTools();
 }
 
