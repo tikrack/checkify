@@ -12,6 +12,7 @@ const UserListPage = () => {
   useEffect(() => {
     (async () => {
       const result = await window.db.getAllChecks();
+      console.log(result);
       setChecks(result);
     })();
   }, []);
@@ -46,7 +47,7 @@ const UserListPage = () => {
     {
       header: "توضیحات",
       accessorKey: "description",
-      cell: (c) => c.getValue().substring(0, 100),
+      cell: (c) => c.getValue().substring(0, 30),
     },
     {
       header: "وضعیت",
@@ -59,7 +60,14 @@ const UserListPage = () => {
     },
     {
       header: "گیرنده",
-      accessorKey: "receiver_id",
+      accessorKey: "receiver",
+      cell: (c) => {
+        return (
+          c.cell.row.original?.["receiver-family"] +
+          " " +
+          c.cell.row.original?.["receiver-name"]
+        );
+      },
     },
   ];
 

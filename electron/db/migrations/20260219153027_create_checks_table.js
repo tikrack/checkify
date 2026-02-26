@@ -12,9 +12,9 @@ exports.up = function(knex) {
     table.date("date").notNullable();
     table.string("description").notNullable();
     table.string("status").notNullable().defaultTo("pending");
-    table.integer("receiver_id").unsigned();
+    table.integer("receiver-id").unsigned();
 
-    table.foreign("receiver_id").references("id").inTable("users").onDelete("CASCADE");
+    table.foreign("receiver-id").references("id").inTable("users").onDelete("CASCADE");
   });
 };
 

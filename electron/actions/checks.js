@@ -2,12 +2,12 @@ const knex = require("../db/db.js");
 
 const getAll = () => {
   return knex("checks")
-    .leftJoin("users", "checks.receiver_id", "users.id")
+    .leftJoin("users", "checks.receiver-id", "users.id")
     .select(
       "checks.*",
-      "users.name as receiver_name",
-      "users.family as receiver_family",
-      "users.national_code as receiver_national_code",
+      "users.name as receiver-name",
+      "users.family as receiver-family",
+      "users.national-code as receiver-national-code",
     );
 };
 
@@ -19,7 +19,7 @@ const issue = async (data) => {
       .first();
 
     return await knex("checks").insert({
-      receiver_id: receiver?.id,
+      "receiver-id": receiver?.id,
       seyyad: data.seyyad,
       series: data.series,
       serial: data.serial,
