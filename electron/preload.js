@@ -8,5 +8,6 @@ contextBridge.exposeInMainWorld("db", {
   updateUser: () => ipcRenderer.invoke("update-user"),
   removeUser: (d) => ipcRenderer.invoke("remove-user", d),
 
+  getAllChecks: (d) => ipcRenderer.invoke("get-all-checks", d),
   issueCheck: (d) => ipcRenderer.invoke("issue-check", d),
 });

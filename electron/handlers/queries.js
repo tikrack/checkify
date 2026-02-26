@@ -13,6 +13,7 @@ const queryHandler = () => {
   ipcMain.handle("remove-user", async (_, d) => usersAction.remove(d));
 
 
+  ipcMain.handle("get-all-checks", async () => checksAction.getAll());
   ipcMain.handle("issue-check", async (_, d) => checksAction.issue(d));
 };
 

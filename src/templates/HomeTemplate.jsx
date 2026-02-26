@@ -9,6 +9,12 @@ const HomeTemplate = () => {
         <h2 className={"!font-rokh text-2xl"}>خدمات چک</h2>
         <div className="mt-3 grid grid-cols-4 gap-6">
           <Card
+            href={"/checks"}
+            icon={<Paypal size="42" className={"text-warning"} variant="Bold" />}
+            title={"چک ها"}
+            description={"مدیریت کلیه چک های سامانه چکیفای"}
+          />
+          <Card
             href={"/checks/issue"}
             icon={
               <Paypal size="42" className={"text-warning"} variant="Bold" />

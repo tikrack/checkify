@@ -1,15 +1,25 @@
 const knex = require("../db/db.js");
 
 const getAll = () => {
-  return knex("checks").select("*");
+  return knex("checks")
+    .leftJoin("users", "checks.receiver_id", "users.id")
+    .select(
+      "checks.*",
+      "users.name as receiver_name",
+      "users.family as receiver_family",
+      "users.national_code as receiver_national_code",
+    );
 };
 
 const issue = async (data) => {
   try {
-    const receiver = knex("users").where({"national-code": data?.["national-code"]}).first();
+    const receiver = await knex("users")
+      .where({ "national-code": data?.["national-code"] })
+      .select("*")
+      .first();
 
     return await knex("checks").insert({
-      "receiver_id": receiver?.id,
+      receiver_id: receiver?.id,
       seyyad: data.seyyad,
       series: data.series,
       serial: data.serial,
