@@ -55,8 +55,82 @@ const get = async (data) => {
   }
 };
 
+const accept = async (seyyad) => {
+  try {
+    const check = await knex("checks")
+      .where({ seyyad })
+      .select("*");
+
+    if (check.length === 0) {
+      return {
+        success: false,
+        message: "چک یافت نشد"
+      };
+    }
+
+    if (check.status !== "pending") {
+      return {
+        success: false,
+        message: "این چک قبلاً پردازش شده است"
+      };
+    }
+
+    await knex("checks")
+      .where({ seyyad })
+      .update({
+        status: "accepted",
+      });
+
+    return {
+      success: true,
+      message: "چک با موفقیت تایید شد"
+    };
+
+  } catch (err) {
+    throw err;
+  }
+};
+
+const reject = async (seyyad) => {
+  try {
+    const check = await knex("checks")
+      .where({ seyyad })
+      .select("*");
+
+    if (check.length === 0) {
+      return {
+        success: false,
+        message: "چک یافت نشد"
+      };
+    }
+
+    if (check.status !== "pending") {
+      return {
+        success: false,
+        message: "این چک قبلاً پردازش شده است"
+      };
+    }
+
+    await knex("checks")
+      .where({ seyyad })
+      .update({
+        status: "rejected",
+      });
+
+    return {
+      success: true,
+      message: "چک با موفقیت رد شد"
+    };
+
+  } catch (err) {
+    throw err;
+  }
+};
+
 module.exports = {
   getAll,
   issue,
   get,
+  accept,
+  reject,
 };

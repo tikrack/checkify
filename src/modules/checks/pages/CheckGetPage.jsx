@@ -26,12 +26,20 @@ const CheckGetPage = () => {
     }
   };
 
-  const acceptCheck = () => {
-
+  const acceptCheck = async () => {
+    if (confirm("از کار خود مطمئن هستید؟")) {
+      await window.db.acceptCheck(check?.seyyad)
+      toast.success("با موفقیت تایید شد.")
+      navigate("/home")
+    }
   }
 
-  const rejectCheck = () => {
-
+  const rejectCheck = async () => {
+    if (confirm("از کار خود مطمئن هستید؟")) {
+      await window.db.rejectCheck(check?.seyyad)
+      toast.success("با موفقیت رد شد.")
+      navigate("/home")
+    }
   }
 
   return (

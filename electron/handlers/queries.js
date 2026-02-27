@@ -18,6 +18,8 @@ const queryHandler = () => {
   ipcMain.handle("get-all-checks", async () => checksAction.getAll());
   ipcMain.handle("issue-check", async (_, d) => checksAction.issue(d));
   ipcMain.handle("get-check", async (_, d) => checksAction.get(d));
+  ipcMain.handle("accept-check", async (_, d) => checksAction.accept(d));
+  ipcMain.handle("reject-check", async (_, d) => checksAction.reject(d));
 };
 
 module.exports = queryHandler;

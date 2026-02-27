@@ -13,4 +13,6 @@ contextBridge.exposeInMainWorld("db", {
   getAllChecks: (d) => ipcRenderer.invoke("get-all-checks", d),
   issueCheck: (d) => ipcRenderer.invoke("issue-check", d),
   getCheck: (d) => ipcRenderer.invoke("get-check", d),
+  acceptCheck: (d) => ipcRenderer.invoke("accept-check", d),
+  rejectCheck: (d) => ipcRenderer.invoke("reject-check", d),
 });
