@@ -26,6 +26,14 @@ const CheckGetPage = () => {
     }
   };
 
+  const acceptCheck = () => {
+
+  }
+
+  const rejectCheck = () => {
+
+  }
+
   return (
     <>
       <Container className={"mt-10 flex justify-center"}>
@@ -46,14 +54,43 @@ const CheckGetPage = () => {
         )}
         {level === 2 && (
           <div className="bg-white border border-gray-200 p-6 max-w-120 w-full rounded-2xl">
-            <h2 className={"!font-rokh text-2xl text-center mb-6"}>
+            <h2 className={"!font-rokh text-2xl text-center mb-8"}>
               بررسی چک
             </h2>
-            <Button type={"submit"} className={"mt-4 w-full !bg-green-600"} size={"lg"}>
+            <div className={"flex justify-between items-center"}>
+              <span>شناسه چک</span>
+              <span>{check?.seyyad}</span>
+            </div>
+            <hr className={"h-px border-0 opacity-100 bg-gray-200 my-4"} />
+            <div className={"flex justify-between items-center"}>
+              <span>سری چک</span>
+              <span>{check?.series}</span>
+            </div>
+            <hr className={"h-px border-0 opacity-100 bg-gray-200 my-4"} />
+            <div className={"flex justify-between items-center"}>
+              <span>سریال چک</span>
+              <span>{check?.serial}</span>
+            </div>
+            <hr className={"h-px border-0 opacity-100 bg-gray-200 my-4"} />
+            <div className={"flex justify-between items-center"}>
+              <span>مبلغ (﷼)</span>
+              <span>{check?.amount.toLocaleString()}</span>
+            </div>
+            <hr className={"h-px border-0 opacity-100 bg-gray-200 my-4"} />
+            <div className={"flex justify-between items-center"}>
+              <span>تاریخ</span>
+              <span dir={"ltr"}>{(new Date(check?.date)).toLocaleString("fa-IR")}</span>
+            </div>
+            <hr className={"h-px border-0 opacity-100 bg-gray-200 my-4"} />
+            <div className={"flex justify-between items-start"}>
+              <span>توضیحات</span>
+              <span className={"pr-10"}>{check?.description}</span>
+            </div>
+            <Button type={"submit"} onClick={acceptCheck} className={"mt-8 w-full !bg-green-600"} size={"lg"}>
               تایید چک
             </Button>
-            <Button type={"submit"} className={"mt-2 w-full !bg-red-600"} size={"lg"}>
-              رد کردن جک
+            <Button type={"submit"} onClick={rejectCheck} className={"mt-2 w-full !bg-red-600"} size={"lg"}>
+              رد کردن  چک
             </Button>
           </div>
         )}
