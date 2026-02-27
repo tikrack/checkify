@@ -33,7 +33,30 @@ const issue = async (data) => {
   }
 };
 
+const get = async (data) => {
+  try {
+    const check = await knex("check")
+      .where({ seyyad: data?.seyyad })
+      .select("*");
+
+    if (check.length !== 0 && check[0]["receiver-id"] === data.userId) {
+      return {
+        success: true,
+        data: check[0],
+      };
+    } else {
+      return {
+        success: false,
+        data: null,
+      };
+    }
+  } catch (err) {
+    throw err;
+  }
+};
+
 module.exports = {
   getAll,
   issue,
+  get,
 };
