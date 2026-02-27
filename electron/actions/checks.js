@@ -68,7 +68,7 @@ const accept = async (seyyad) => {
       };
     }
 
-    if (check.status !== "pending") {
+    if (check[0].status !== "pending") {
       return {
         success: false,
         message: "این چک قبلاً پردازش شده است"
@@ -104,7 +104,7 @@ const reject = async (seyyad) => {
       };
     }
 
-    if (check.status !== "pending") {
+    if (check[0].status !== "pending") {
       return {
         success: false,
         message: "این چک قبلاً پردازش شده است"

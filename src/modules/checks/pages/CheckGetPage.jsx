@@ -20,7 +20,11 @@ const CheckGetPage = () => {
 
     if (result.success) {
       setCheck(result.data);
-      setLevel(2);
+      if (result.data.status === "pending") {
+        setLevel(2);
+      }else {
+        toast.error("این چک قبلا پردازش شده است.")
+      }
     } else {
       toast.error("چک مورد نظر یافت نشد.");
     }
@@ -28,19 +32,29 @@ const CheckGetPage = () => {
 
   const acceptCheck = async () => {
     if (confirm("از کار خود مطمئن هستید؟")) {
-      await window.db.acceptCheck(check?.seyyad)
-      toast.success("با موفقیت تایید شد.")
-      navigate("/home")
+      const result = await window.db.acceptCheck(check?.seyyad);
+
+      if (result.success) {
+        toast.success(result.message);
+        navigate("/home");
+      } else {
+        toast.error(result.message);
+      }
     }
-  }
+  };
 
   const rejectCheck = async () => {
     if (confirm("از کار خود مطمئن هستید؟")) {
-      await window.db.rejectCheck(check?.seyyad)
-      toast.success("با موفقیت رد شد.")
-      navigate("/home")
+      const result = await window.db.rejectCheck(check?.seyyad);
+
+      if (result.success) {
+        toast.success(result.message);
+        navigate("/home");
+      } else {
+        toast.error(result.message);
+      }
     }
-  }
+  };
 
   return (
     <>
@@ -62,9 +76,7 @@ const CheckGetPage = () => {
         )}
         {level === 2 && (
           <div className="bg-white border border-gray-200 p-6 max-w-120 w-full rounded-2xl">
-            <h2 className={"!font-rokh text-2xl text-center mb-8"}>
-              بررسی چک
-            </h2>
+            <h2 className={"!font-rokh text-2xl text-center mb-8"}>بررسی چک</h2>
             <div className={"flex justify-between items-center"}>
               <span>شناسه چک</span>
               <span>{check?.seyyad}</span>
@@ -87,18 +99,30 @@ const CheckGetPage = () => {
             <hr className={"h-px border-0 opacity-100 bg-gray-200 my-4"} />
             <div className={"flex justify-between items-center"}>
               <span>تاریخ</span>
-              <span dir={"ltr"}>{(new Date(check?.date)).toLocaleString("fa-IR")}</span>
+              <span dir={"ltr"}>
+                {new Date(check?.date).toLocaleString("fa-IR")}
+              </span>
             </div>
             <hr className={"h-px border-0 opacity-100 bg-gray-200 my-4"} />
             <div className={"flex justify-between items-start"}>
               <span>توضیحات</span>
               <span className={"pr-10"}>{check?.description}</span>
             </div>
-            <Button type={"submit"} onClick={acceptCheck} className={"mt-8 w-full !bg-green-600"} size={"lg"}>
+            <Button
+              type={"submit"}
+              onClick={acceptCheck}
+              className={"mt-8 w-full !bg-green-600"}
+              size={"lg"}
+            >
               تایید چک
             </Button>
-            <Button type={"submit"} onClick={rejectCheck} className={"mt-2 w-full !bg-red-600"} size={"lg"}>
-              رد کردن  چک
+            <Button
+              type={"submit"}
+              onClick={rejectCheck}
+              className={"mt-2 w-full !bg-red-600"}
+              size={"lg"}
+            >
+              رد کردن چک
             </Button>
           </div>
         )}
