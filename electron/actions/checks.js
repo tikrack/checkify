@@ -35,7 +35,7 @@ const issue = async (data) => {
 
 const get = async (data) => {
   try {
-    const check = await knex("check")
+    const check = await knex("checks")
       .where({ seyyad: data?.seyyad })
       .select("*");
 
