@@ -4,7 +4,7 @@
  */
 exports.seed = async function(knex) {
   // await knex('users').del()
-  const admin = knex('users').where({username: "admin"}).select("*");
+  const admin = await knex('users').where({username: "admin"}).select("*");
 
   if (admin.length === 0) {
     await knex('users').insert([

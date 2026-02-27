@@ -28,6 +28,14 @@ const HomeTemplate = () => {
             title={"صدور چک"}
             description={"انجام کلیه امور صدور چک توسط سامانه"}
           />
+          <Card
+            href={"/checks/get"}
+            icon={
+              <Paypal size="42" className={"text-warning"} variant="Bold" />
+            }
+            title={"دریافت چک"}
+            description={"دریافت چک ثبت شده برای شما"}
+          />
         </div>
         {isOwner() && (
           <>

@@ -45,7 +45,7 @@ const CheckIssuePage = () => {
       <Container className={"mt-10 flex justify-center"}>
         {level < 3 && (
           <Form
-            schema={schema}
+            schema={schema("issue")}
             className="bg-white border border-gray-200 p-6 max-w-190 w-full rounded-2xl"
             onSubmit={handleSubmit}
           >

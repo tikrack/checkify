@@ -6,6 +6,7 @@ import UserCreatePage from "./modules/users/page/UserCreatePage";
 import CheckIssuePage from "./modules/checks/pages/CheckIssuePage";
 import CheckListPage from "./modules/checks/pages/CheckListPage";
 import LoginTemplate from "./templates/LoginTemplate";
+import CheckGetPage from "./modules/checks/pages/CheckGetPage";
 
 const Router = () => {
   return (
@@ -22,6 +23,7 @@ const Router = () => {
             <Route path={"checks"}>
               <Route index element={<CheckListPage />} />
               <Route path={"issue"} element={<CheckIssuePage />} />
+              <Route path={"get"} element={<CheckGetPage />} />
             </Route>
           </Route>
         </Routes>
